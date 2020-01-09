@@ -11,6 +11,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import { setCurrentUser } from './redux/user/user.action';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import { selectCurrentUser } from './redux/user/user.selector'
+import Checkout from './pages/checkout/checkout.component';
 // import Hats from './pages/hats/hats.component';
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -42,6 +43,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={Homepage}/>
             <Route path='/shop' component={Shop}/>
+            <Route exact path='/checkout' component={Checkout}/>
             <Route 
               exact 
               path='/signin' 
