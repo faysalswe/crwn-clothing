@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect'
 import './App.css';
 
@@ -10,9 +10,9 @@ import Header from './components/header/header.component';
 import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import { setCurrentUser } from './redux/user/user.action';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import { selectCurrentUser } from './redux/user/user.selector'
+import { selectCurrentUser } from './redux/user/user.selectors'
 import Checkout from './pages/checkout/checkout.component';
-// import Hats from './pages/hats/hats.component';
+
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
@@ -38,24 +38,22 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
-          <Header/>
-          <Switch>
-            <Route exact path='/' component={Homepage}/>
-            <Route path='/shop' component={Shop}/>
-            <Route exact path='/checkout' component={Checkout}/>
-            <Route 
-              exact 
-              path='/signin' 
-              render={ 
-                () => this.props.currentUser ? 
+        <Header />
+        <Switch>
+          <Route exact path='/' component={Homepage} />
+          <Route path='/shop' component={Shop} />
+          <Route exact path='/checkout' component={Checkout} />
+          <Route
+            exact
+            path='/signin'
+            render={
+              () => this.props.currentUser ?
                 (<Redirect to="/" />)
-                : 
-                (<SignInAndSignUp/>) 
-              }
-            />
-          </Switch>
-        </BrowserRouter>
+                :
+                (<SignInAndSignUp />)
+            }
+          />
+        </Switch>
       </div>
     );
   }
