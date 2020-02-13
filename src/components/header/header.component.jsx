@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './header.styles.scss';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { Link } from "react-router-dom";
@@ -9,9 +9,13 @@ import { createStructuredSelector } from 'reselect'
 import CartIcon from '../cart-icon/cart-icon.component'
 import CartDropdown from '../cart-dropdown/cart-dropdown.component'
 import { selectCartHidden } from '../../redux/cart/cart.selectors' 
-import { selectCurrentUser } from '../../redux/user/user.selectors' 
+import CurrentUserContext from "../../context/current-user/current-user";
+import { CartContext } from "../../providers/cart/cart.provider";
 
-export const Header = ({ currentUser, hidden}) => {
+export const Header = () => {
+    const currentUser = useContext(CurrentUserContext);
+    const { hidden } = useContext(CartContext);
+
     return (
         <div className="header">
             <Link to="/">
@@ -30,14 +34,12 @@ export const Header = ({ currentUser, hidden}) => {
                 <CartIcon />
             </div>
             {
-                hidden ? null :
-                <CartDropdown/>
+                hidden ? null : <CartDropdown/>
             }
         </div>
     )
 }
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
     hidden: selectCartHidden
 })
 export default connect(mapStateToProps)(Header);
