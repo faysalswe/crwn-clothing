@@ -1,13 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { gql } from 'apollo-boost'
-
 import Header from './header.component'
-const GET_CART_HIDDEN = gql`
-    {
-        cartHidden @client
-    }
-` 
+import { GET_CART_HIDDEN } from '../../graphql/query'
 
 const HeaderContainer = () => {
     return (

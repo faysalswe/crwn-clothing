@@ -3,16 +3,17 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store";
+
 import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import ApolloClient from "apollo-boost";
 
-import { store, persistor } from "./redux/store";
+import { resolvers } from './graphql/resolvers'
+import { typeDefs } from './graphql/schema'
 
-import { resolvers, typeDefs } from './graphql/resolvers'
 import "./index.css";
 import App from "./App";
-
 
 const cache = new InMemoryCache();
 

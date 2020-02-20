@@ -1,35 +1,12 @@
-import { gql } from 'apollo-boost';
 import {
-    addItemToCart, getCartItemCount
-} from './cart.utils'
-
-export const typeDefs = gql`
-    extend type Item {
-        quantity: Int
-    }
-    extend type Mutation {
-        ToggleCartHidden: Boolean!
-        AddItemToCart(item: Item!): [Item]!
-    }
-`;
-
-const GET_CART_HIDDEN = gql`
-    {
-        cartHidden @client
-    }
-` 
-
-const GET_CART_ITEMS = gql`
-    {
-        cartItems @client
-    }
-`
-
-const GET_ITEM_COUNT = gql`
-    {
-        itemCount @client
-    }
-`
+    addItemToCart, 
+    getCartItemCount
+} from './cart.utils';
+import {
+    GET_CART_HIDDEN, 
+    GET_CART_ITEMS,
+    GET_ITEM_COUNT 
+} from './query';
 
 export const resolvers = {
     Mutation: {
