@@ -12,3 +12,7 @@ In the list of topic must study:
 3. higher order function
 4. foreach synchronous vs asynchronous
 6. import 'module' vs import alias from 'module'
+
+### `Task need to complete`
+1. make application pwa
+2. make grapql backend server for client grapql
